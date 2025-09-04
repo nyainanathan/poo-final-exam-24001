@@ -51,4 +51,20 @@ public class Frais {
         }
         return FraisStatus.IN_PROGRESS;
     }
+
+    public double getTotalPaye(){
+        return  paiementsAssocies.stream()
+                .mapToDouble(Paiement::getMontant)
+                .sum();
+    }
+
+    public double getFraisReste(){
+        double totalPaye = paiementsAssocies.stream()
+                .mapToDouble(Paiement::getMontant)
+                .sum();
+        if (totalPaye > this.montant){
+            totalPaye = this.montant;
+        }
+        return this.montant - totalPaye;
+    }
 }

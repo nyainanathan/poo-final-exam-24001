@@ -2,7 +2,7 @@ import java.time.Instant;
 import java.util.List;
 
 public class Statistics {
-    public List<Frais> getLateFeess(List<Frais> fraisList, Instant t){
+    public List<Frais> getLateFees(List<Frais> fraisList, Instant t){
        return fraisList.stream()
                .filter(frais -> frais.getFraisStatus(t) == Frais.FraisStatus.LATE)
                .toList();
@@ -10,7 +10,7 @@ public class Statistics {
 
     public double getTotalMissingFees(List<Frais> fraisList, Instant t){
         return fraisList.stream()
-                .filter(frais -> frais.getFraisStatus() == Frais.FraisStatus.LATE)
+                .filter(frais -> frais.getFraisStatus(t) == Frais.FraisStatus.LATE)
                 .mapToDouble(Frais::getMontant)
                 .sum();
     }
@@ -18,7 +18,8 @@ public class Statistics {
     public double getTotalPaidByStudent(Etudiant etudiant, List<Frais> fraisList, Instant t){
         return fraisList.stream()
                 .filter(frais -> frais.getEtudiant().equals(etudiant))
-                .mapToDouble(Frais::getMontant)
+                .filter(frais ->frais.getFraisStatus(t) == Frais.FraisStatus.PAID)
+                .mapToDouble(Frais::getTotalPaye)
                 .sum();
     }
 }
