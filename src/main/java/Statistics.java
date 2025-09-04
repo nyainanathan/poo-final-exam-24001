@@ -16,10 +16,14 @@ public class Statistics {
     }
 
     public double getTotalPaidByStudent(Etudiant etudiant, List<Frais> fraisList, Instant t){
-        return fraisList.stream()
+
+        List<Frais> paidByStudent = fraisList.stream()
                 .filter(frais -> frais.getEtudiant().equals(etudiant))
-                .filter(frais -> frais.getDeadline().isBefore(t))
-                .mapToDouble(Frais::getTotalPaye)
-                .sum();
+                .toList();
+        double sum = 0;
+        for(Frais f :  paidByStudent){
+            sum += f.getTotalPaye(t);
+        }
+        return sum;
     }
 }

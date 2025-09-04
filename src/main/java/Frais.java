@@ -57,6 +57,12 @@ public class Frais {
                 .mapToDouble(Paiement::getMontant)
                 .sum();
     }
+    public double getTotalPaye(Instant t){
+        return  paiementsAssocies.stream()
+                .filter(p -> p.getDate().isBefore(t))
+                .mapToDouble(Paiement::getMontant)
+                .sum();
+    }
 
     public double getFraisReste(){
         double totalPaye = paiementsAssocies.stream()
