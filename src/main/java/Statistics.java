@@ -11,7 +11,7 @@ public class Statistics {
     public double getTotalMissingFees(List<Frais> fraisList, Instant t){
         return fraisList.stream()
                 .filter(frais -> frais.getFraisStatus(t) == Frais.FraisStatus.LATE)
-                .mapToDouble(Frais::getMontant)
+                .mapToDouble(Frais::getFraisReste)
                 .sum();
     }
 
