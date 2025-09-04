@@ -18,7 +18,7 @@ public class Statistics {
     public double getTotalPaidByStudent(Etudiant etudiant, List<Frais> fraisList, Instant t){
         return fraisList.stream()
                 .filter(frais -> frais.getEtudiant().equals(etudiant))
-                .filter(frais ->frais.getFraisStatus(t) == Frais.FraisStatus.PAID)
+                .filter(frais -> frais.getDeadline().isBefore(t))
                 .mapToDouble(Frais::getTotalPaye)
                 .sum();
     }

@@ -56,7 +56,7 @@ class StatisticsTest {
   @Test
     public void get_total_paid_by_student_ok(){
       List<Frais> fraisList = List.of(frais1, frais2, frais3, frais4);
-      assertEquals(190000d, statistics.getTotalPaidByStudent(etudiant1, fraisList, Instant.parse("2025-09-04T10:00:00Z")));
-      assertEquals(190000d, statistics.getTotalPaidByStudent(etudiant1, fraisList, Instant.parse("2025-09-04T10:00:00Z")));
+      assertEquals(760000d, statistics.getTotalPaidByStudent(etudiant1, fraisList, Instant.parse("2026-09-04T10:00:00Z")));
+      assertEquals(0d, statistics.getTotalPaidByStudent(etudiant1, fraisList, Instant.parse("2021-09-04T10:00:00Z")));
   }
 }
