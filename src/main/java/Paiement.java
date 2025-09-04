@@ -9,5 +9,5 @@ public class Paiement {
     private final int id;
     private final double montant;
     private final Instant date;
-
+    private Etudiant etudiant;
 }

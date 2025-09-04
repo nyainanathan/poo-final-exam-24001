@@ -1,4 +1,5 @@
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 
 import java.time.Instant;
 import java.util.Map;
@@ -10,4 +11,9 @@ public class Etudiant {
     private final String prenom;
     private final Instant dateRentree;
     private Map<Groupe, Instant> historiqueGroupe;
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.id == ((Etudiant) obj).id;
+    }
 }
